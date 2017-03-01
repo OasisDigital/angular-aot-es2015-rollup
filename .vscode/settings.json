@@ -1,0 +1,11 @@
+{
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "html.format.endWithNewline": true,
+  "html.format.indentInnerHtml": true,
+  "html.format.extraLiners": "vs-code-is-silly",
+  "html.format.wrapLineLength": 70,
+  "editor.detectIndentation": false,
+  "rewrap.wrappingColumn": 70,
+  "vsicons.presets.angular": false
+}

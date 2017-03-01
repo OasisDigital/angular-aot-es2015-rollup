@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "outDir": "build",
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "include": [
+    "app/**/*.ts"
+  ],
+  "exclude": [
+    "More",
+    "SKIP-create-bundle",
+    "SKIP-AOT",
+    "node_modules"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "app/aot",
+    "skipMetadataEmit": true
+  }
+}

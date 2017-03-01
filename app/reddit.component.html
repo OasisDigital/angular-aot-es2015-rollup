@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-content">
+    <div class="card-title">Reddit Image Search (via an API)</div>
+
+    <form [formGroup]="criteriaForm" class="row">
+      <div class="col s3">
+        <label for="subReddit">Search reddit.com/r/</label>
+        <input id="subReddit" type="text" placeholder="validate" formControlName="subReddit">
+      </div>
+      <div class="col s3">
+        <label for="search">for search string</label>
+        <input id="search" type="text" formControlName="search">
+      </div>
+    </form>
+  </div>
+</div>
+
+<div>
+  <div class="box" *ngFor="let r of results | async">
+    <small> {{r.title}} </small>
+    <img *ngIf="r.url" [src]="r.url">
+  </div>
+</div>
