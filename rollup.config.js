@@ -2,15 +2,10 @@
 
 import nodeResolve from '@oasisdigital/rollup-plugin-node-resolve'; // temporary fork
 import commonjs from 'rollup-plugin-commonjs';
-import buble from 'rollup-plugin-buble';
-import uglify from 'rollup-plugin-uglify';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 
 // Beware of:
 // https://github.com/maxdavidson/rollup-plugin-sourcemaps/issues/33
-
-// Study to understand why some of this is needed:
-// https://github.com/angular/angularfire2/blob/master/docs/aot-rollup-cli-setup.md
 
 export default {
   entry: 'build/aot-main.js', // entry point for the application
@@ -35,8 +30,6 @@ export default {
       include: [
         'node_modules/rxjs/**'
       ]
-    }),
-    buble({ transforms: { dangerousForOf: true } }),
-    uglify()
+    })
   ]
 }

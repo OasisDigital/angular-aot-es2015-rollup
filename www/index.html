@@ -30,21 +30,22 @@
         </p>
 
         <p>The project is compiled using:</p>
-        <ul>
-          <li>AOT</li>
-          <li>the new <a href="https://github.com/angular/angular/blob/master/CHANGELOG.md#es2015-builds">experimental es2015
-          ESM packaging</a> of the Angular libraries</li>
-          <li><a href="http://rollupjs.org/">Rollup</a></li>
-          <li><a href="https://buble.surge.sh/guide/">Buble</a></li>
-          <li><a href="http://lisperator.net/uglifyjs/">Uglify</a></li>
+        <ul class="collection">
+          <li class="collection-item">AOT</li>
+          <li class="collection-item">the new
+            <a href="https://github.com/angular/angular/blob/master/CHANGELOG.md#es2015-builds">experimental es2015
+            ESM packaging</a> of the Angular libraries</li>
+          <li class="collection-item"><a href="http://rollupjs.org/">Rollup</a></li>
+          <li class="collection-item">Clojure Compiler (Java edition)</a>
+          </li>
         </ul>
 
         <p>See the project README for more explanation.</p>
 
         <p>In this example, we use Observable operators to efficiently and
           correctly call a remote API. The API chosen is a Reddit image
-          search. <b>To use it, edit the search string field</b> contents with
-          something like "meow".</p>
+          search. <b>To use it, edit the search string field</b> contents
+          with something like "meow".</p>
 
         <p>In the browser JavaScript console, you can see messages as the
           search criteria change, you can see the change denounced, and
@@ -52,8 +53,6 @@
       </div>
     </div>
 
-    <script src="shim.min.js"></script>
-    <script src="zone.min.js"></script>
-    <script src="bundle.js"></script>
+    <script src="bundle.min.js"></script>
   </body>
 </html>

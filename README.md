@@ -1,13 +1,8 @@
-# Angular 4 rc.1 AOT Example with es2015 ESM, Rollup, Buble, Uglify
+# Angular 4 rc.1 AOT Example with es2015 ESM, Rollup, Closure Compiler
 
 Kyle Cordes, Oasis Digital
 
-Feb 2017
-
-## DRAFT 1
-
-This is a first draft. There might be mistakes. There might be
-incomplete research.
+March 2017
 
 ## Background
 
@@ -102,58 +97,34 @@ I have written a pull request to add the feature. And in the meantime,
 published this temporary fork which adds the feature. You can see its
 use in the `rollup.config.js` file.
 
-### Buble
+### Closure Compiler (Java edition)
 
-<https://buble.surge.sh/guide/>
+<https://github.com/google/closure-compiler/>
 
 While for optimal bundling it is important to use ES2015 code as far
-as possible through the build process, with this kit I was unable to
-reach all the way to browser shippable code with ES2015, even though
-the current versions of major browsers have extensive ES2015 support.
-Why?
+as possible through the build process, I was looking for output:
 
-Because there is a current hole in the ecosystem, as far as I can
-tell. There isn't a minifier are available which consumes and produces
-ES2015 code.
+* Suitable for older browsers, which is to say, ES5.
+* Minified.
+* As a single file.
 
-So to keep the process moving, we need a compiler ES2015->ES5. The choices:
+There are various alternative tools to do this. In an earlier edition
+of this project I used Buble (rather than the more popular Babel, for
+various reasons), and uglify, both in the form of Rollup plug-ins.
 
-* Babel
-  * The standard, the default almost everyone uses.
-  * After its extreme modularization in the latest couple of versions,
-    It ships a very surprisingly large number of node packages and
-    files to produce a working ES2015 compiler.
-  * Not so fast.
-  * Most importantly, there is currently a bug, most likely in the
-    Rollup Babel plug-in, in which it believes that it is not been
-    configured correctly to disregard modules.
+However, the current leader for producing the smallest results appears
+to still be the Google Closure Compiler, which is much older than the
+competing tools, and written in (horrors!) Java. It is robust, proven,
+performant.
 
-* Buble
-  * Small, fast, few feature alternative.
-  * Written by the author of Rollup, so likely to work well together.
-  * It has one relevant limitation here around for-of loops, but it
-    turns out that the TypeScript compilation emits usages of this
-    loop in a form that works fine with the Buble limitation.
-    ("dangerousForOf")
-  * No current bug inhibiting it from working.
+#### Why not the Closure Compiler JavaScript editio?n
 
-* TypeScript compiler
-  * In the past I have successfully used this for the ES2015-to-ES5
-    step, I believe initially nudged in this direction by an AOT
-    example published by Rob Wormald.
-  * Run pretty fast, installs quickly, arrives in the form of one
-    package with no dependencies.
-
-I will probably try TypeScript in this ES2015-to-ES5 step next time.
-Buble worked great for this time.
-
-### Uglify
-
-<http://lisperator.net/uglifyjs/>
-
-Uglify is by far the most common JavaScript minifier. It worked fine
-for this use without any trouble. But read the later section for
-important limitations.
+I tried this first, as would avoid a Java dependency. Unfortunately,
+there appears to be a limitation or bug which makes it unable to
+process the FESM bundles provided by the Angular project. Those files
+contain a Unicode character U+0275, rejected by
+Closure-Compiler-in-JavaScript JavaScript as "not a valid identifier
+start char".
 
 ### Brotli
 
@@ -174,13 +145,15 @@ npm start
 
 Then experiment with the application in your browser.
 
+The output size, **inclusive** of mandatory polyfills:
+
 ```
--rw-r--r--+ 1 kcordes  staff  355226 Feb 28 21:35 www/bundle.js
--rw-------+ 1 kcordes  staff   71325 Feb 28 21:35 www/bundle.js.br
+-rw-r--r--+ 1 kcordes  staff  422550 Mar  1 08:20 www/bundle.min.js
+-rw-------+ 1 kcordes  staff   94633 Mar  1 08:20 www/bundle.min.js.br
 ```
 
 This application uses several of the Angular main modules, and various
-RxJS operators. The resulting JavaScript "on the wire" is 71K. This
+RxJS operators. The resulting JavaScript "on the wire" is 94K. This
 seems quite satisfactory.
 
 To understand where the bytes come from:
@@ -188,6 +161,10 @@ To understand where the bytes come from:
 ```
 npm run explore
 ```
+
+This looks at the bundle size prior to the Closure step, because of a
+weakness in source map processing (which it is possible to work around
+some external processing, not yet done here).
 
 ## Limitation and future improvements
 
@@ -197,12 +174,12 @@ Specifically, for best results it is necessary for the steps all the
 way through the module bundling, tree shaking, and minification to
 understand the data types.
 
-As I understand, there are efforts well under way primarily at Google
-to put the necessary type wiring in place so that the Google Closure
-Compiler can be used in leiu of Rollup/Buble/Uglify. (Closure offers
-"advanced optimizations" which are still (in spite of being a years
-old tool) superior.) When complete this wiring should yield notably
-better overall results, with fewer different tools involved.
+To do so, we would replace the simplistic use of the Closure Compiler
+here (where does processing a single bundle after the tree shaking was
+done by rollup) with a full use of Closure "advanced optimizations".
+However, this is still awaiting some additional tooling adjustments to
+propagate types all the way from TypeScript into the type system
+understood by Closure Compiler.
 
 To follow those efforts:
 
@@ -210,4 +187,6 @@ To follow those efforts:
 
 Unfortunately the running example there is a smaller, simpler angular
 application than the one here; so you can't directly compare the
-sizes.
+sizes. Still, it is safe to assume that once the full type driven
+optimization pipeline is done, the result is significantly better than
+what is achieved by the Rollup-plus-Closure solution.
