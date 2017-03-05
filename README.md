@@ -1,4 +1,4 @@
-# Angular 4 rc.1 AOT Example with es2015 ESM, Rollup, Buble, Uglify
+# Angular 4 rc.2 AOT Example with es2015 ESM, Rollup, Buble, Uglify
 
 Kyle Cordes, Oasis Digital
 
@@ -177,8 +177,8 @@ RxJS operators. The resulting JavaScript "on the wire" is 88K. This
 seems quite satisfactory. Size includes the polyfills in the bundle.
 
 ```
--rw-r--r--+ 1 kcordes  staff  404969 Mar  4 19:18 www/bundle.js
--rw-------+ 1 kcordes  staff   85831 Mar  4 19:18 www/bundle.js.br
+-rw-r--r--+ 1 kcordes  staff  360584 Mar  4 19:44 www/bundle.js
+-rw-------+ 1 kcordes  staff   78464 Mar  4 19:44 www/bundle.js.br
 ```
 
 To understand where the bytes come from:
