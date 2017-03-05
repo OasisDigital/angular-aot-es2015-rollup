@@ -1,4 +1,4 @@
-# Angular 4 rc.1 AOT Example with es2015 ESM, Rollup, Closure Compiler
+# Angular 4 rc.2 AOT Example with es2015 ESM, Rollup, Closure Compiler
 
 Kyle Cordes, Oasis Digital
 
@@ -146,8 +146,8 @@ Then experiment with the application in your browser.
 The output size, **inclusive** of mandatory polyfills:
 
 ```
--rw-r--r--+ 1 kcordes  staff  364569 Mar  4 19:58 www/bundle.min.js
--rw-------+ 1 kcordes  staff   78475 Mar  4 19:58 www/bundle.min.js.br
+-rw-r--r--+ 1 kcordes  staff  344914 Mar  4 20:06 www/bundle.min.js
+-rw-------+ 1 kcordes  staff   74748 Mar  4 20:06 www/bundle.min.js.br
 ```
 
 This application uses several of the Angular main modules, and various
