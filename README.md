@@ -146,8 +146,8 @@ Then experiment with the application in your browser.
 The output size, **inclusive** of mandatory polyfills:
 
 ```
--rw-r--r--+ 1 kcordes  staff  422550 Mar  1 08:20 www/bundle.min.js
--rw-------+ 1 kcordes  staff   94633 Mar  1 08:20 www/bundle.min.js.br
+-rw-r--r--+ 1 kcordes  staff  364569 Mar  4 19:58 www/bundle.min.js
+-rw-------+ 1 kcordes  staff   78475 Mar  4 19:58 www/bundle.min.js.br
 ```
 
 This application uses several of the Angular main modules, and various

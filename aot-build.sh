@@ -29,11 +29,6 @@ OPTS=(
   # Don't include ES6 polyfills, we are using CoreJS
   "--rewrite_polyfills=false"
 
-  # Include the unavoidable polyfills, to get them in the same file,
-  # even though they are already minified:
-  "node_modules/core-js/client/shim.min.js"
-  "node_modules/zone.js/dist/zone.min.js"
-
   # Process the rollup output:
   "www/bundle.js"
 )
