@@ -2,13 +2,6 @@
 
 Kyle Cordes, Oasis Digital
 
-Feb 2017
-
-## DRAFT 1
-
-This is a first draft. There might be mistakes. There might be
-incomplete research.
-
 ## Background
 
 Most Angular users treated AOT as a future curiosity when Angular
@@ -143,6 +136,11 @@ So to keep the process moving, we need a compiler ES2015->ES5. The choices:
     example published by Rob Wormald.
   * Run pretty fast, installs quickly, arrives in the form of one
     package with no dependencies.
+
+* Closure Compiler
+  * Great tool, performs both the compilation and (best available,
+    usually) minification.
+  * I'll make a branch and use it, alternative to this stack.
 
 I will probably try TypeScript in this ES2015-to-ES5 step next time.
 Buble worked great for this time.

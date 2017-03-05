@@ -8,6 +8,7 @@ rm -rf app/aot
 rm -rf www/bundle.js*
 rm -rf www/materialize
 rm -f www/*.js
+rm -f www/*.map
 rm -f www/*.br
 rm -rf build
 mkdir -p build
