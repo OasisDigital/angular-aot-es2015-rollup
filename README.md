@@ -2,8 +2,6 @@
 
 Kyle Cordes, Oasis Digital
 
-March 2017
-
 ## Background
 
 Most Angular users treated AOT as a future curiosity when Angular
@@ -23,8 +21,8 @@ team has recently started shipping the libraries and formats more and
 more suitable for efficient production bundling, with tree shaking,
 with AOT.
 
-This repo demonstrates one such tool stack, Rollup. Rollup has
-received less attention recently compared to Webpack, because the
+This repo demonstrates one such tool stack, built on Rollup. Rollup
+has received less attention recently compared to Webpack, because the
 latter is used inside of the official Angular CLI.
 
 ## Kit
@@ -117,12 +115,12 @@ to still be the Google Closure Compiler, which is much older than the
 competing tools, and written in (horrors!) Java. It is robust, proven,
 performant.
 
-#### Why not the Closure Compiler JavaScript editio?n
+#### Why not the Closure Compiler JavaScript edition?
 
-I tried this first, as would avoid a Java dependency. Unfortunately,
-there appears to be a limitation or bug which makes it unable to
-process the FESM bundles provided by the Angular project. Those files
-contain a Unicode character U+0275, rejected by
+I tried this first, as i twould avoid a Java dependency.
+Unfortunately, there appears to be a limitation or bug which makes it
+unable to process the FESM bundles provided by the Angular project.
+Those files contain a Unicode character U+0275, rejected by
 Closure-Compiler-in-JavaScript JavaScript as "not a valid identifier
 start char".
 

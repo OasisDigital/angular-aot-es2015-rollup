@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@angular/compiler-cli": "4.0.0-rc.1",
-    "@oasisdigital/rollup-plugin-node-resolve": "^2.0.1",
+    "@oasisdigital/rollup-plugin-node-resolve": "^2.0.2",
     "google-closure-compiler": "^20170218.0.0",
     "rollup": "^0.41.4",
     "rollup-plugin-commonjs": "^7.0.0",
