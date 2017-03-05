@@ -33,6 +33,8 @@ export default {
     commonjs({
       // make it possible to find these individual intra-package files
       include: [
+        'node_modules/core-js/**',
+        'node_modules/zone.js/**',
         'node_modules/rxjs/**'
       ]
     }),

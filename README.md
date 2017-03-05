@@ -172,14 +172,14 @@ npm start
 
 Then experiment with the application in your browser.
 
-```
--rw-r--r--+ 1 kcordes  staff  355226 Feb 28 21:35 www/bundle.js
--rw-------+ 1 kcordes  staff   71325 Feb 28 21:35 www/bundle.js.br
-```
-
 This application uses several of the Angular main modules, and various
-RxJS operators. The resulting JavaScript "on the wire" is 71K. This
-seems quite satisfactory.
+RxJS operators. The resulting JavaScript "on the wire" is 88K. This
+seems quite satisfactory. Size includes the polyfills in the bundle.
+
+```
+-rw-r--r--+ 1 kcordes  staff  404969 Mar  4 19:18 www/bundle.js
+-rw-------+ 1 kcordes  staff   85831 Mar  4 19:18 www/bundle.js.br
+```
 
 To understand where the bytes come from:
 

@@ -24,10 +24,6 @@ if hash bro 2>/dev/null; then
   bro --input www/bundle.js --output www/bundle.js.br
 fi
 
-# Gather unavoidable polyfills
-cp node_modules/core-js/client/shim.min.js www
-cp node_modules/zone.js/dist/zone.min.js www
-
 # Gather CSS
 cp -R node_modules/materialize-css/dist www/materialize
 
