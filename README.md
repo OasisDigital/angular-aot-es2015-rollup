@@ -86,14 +86,14 @@ Only the most current ones can bundle ES2015 modules.
 
 While Rollup can understand ES2015 modules, it needs help from a
 plug-in to understand the node_modules directory and file structure.
-Unfortunately, the shipping version of the relevant plug-in, as of the
-end of February 2017, cannot understand the new "es2015" field in the
-package.json file, used by the Angular packages to locate the ES2015
-FESM code.
 
-I have written a pull request to add the feature. And in the meantime,
-published this temporary fork which adds the feature. You can see its
-use in the `rollup.config.js` file.
+`rollup-plugin-node-resolve` doesn't support the new angular specific
+way of marking ES2015 FESM code, the fork above at this capability.
+
+I'm planning to publish this later under a more easy to find name.  I
+expect eventually the community will standardize around a way to mark
+such code, and the feature will land in the official node resolve
+plug-in.
 
 ### Buble
 
@@ -197,15 +197,8 @@ understand the data types.
 
 As I understand, there are efforts well under way primarily at Google
 to put the necessary type wiring in place so that the Google Closure
-Compiler can be used in leiu of Rollup/Buble/Uglify. (Closure offers
-"advanced optimizations" which are still (in spite of being a years
-old tool) superior.) When complete this wiring should yield notably
-better overall results, with fewer different tools involved.
+Compiler can be used for this.
 
 To follow those efforts:
 
 <https://github.com/alexeagle/closure-compiler-angular-bundling>
-
-Unfortunately the running example there is a smaller, simpler angular
-application than the one here; so you can't directly compare the
-sizes.
