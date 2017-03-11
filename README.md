@@ -1,4 +1,4 @@
-# Angular 4 rc.2 AOT Example with es2015 ESM, Rollup, Closure Compiler
+# Angular 4 AOT Example with es2015 ESM, Rollup, Closure Compiler
 
 Kyle Cordes, Oasis Digital
 
@@ -29,10 +29,9 @@ latter is used inside of the official Angular CLI.
 
 Here are the libraries and elements used in this example.
 
-### Angular 4.0.0-rc.1
+### Angular 4
 
-As of the end of February 2013, this is the very latest, and it is
-also the first release to ship with the new packaging of libraries.
+Angular 4 ships with new ES2015 packaging of libraries.
 
 Angular 4 AOT both compiles and executes more quickly and with smaller
 size than Angular 2. This alone should provide ample motivation for

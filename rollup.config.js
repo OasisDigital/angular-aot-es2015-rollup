@@ -1,6 +1,6 @@
 // See README.md for more explanation
 
-import nodeResolve from '@oasisdigital/rollup-plugin-node-resolve'; // temporary fork
+import nodeResolve from '@oasisdigital/rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 
@@ -21,7 +21,7 @@ export default {
   plugins: [
     sourcemaps(),
     nodeResolve({
-      es2015: true,  // Local fork - in a PR for rollup-plugin-node-resolve
+      es2015: true,  // Angular es2015 package.json field
       module: false, // disable the ES5-in-ES2015 modules we aren't using.
       browser: true  // Not needed for this example, needed for certain 3p libs
     }),
