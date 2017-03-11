@@ -1,4 +1,4 @@
-# Angular 4 rc.2 AOT Example with es2015 ESM, Rollup, Buble, Uglify
+# Angular 4 AOT Example with es2015 ESM, Rollup, Buble, Uglify
 
 Kyle Cordes, Oasis Digital
 
@@ -29,9 +29,9 @@ latter is used inside of the official Angular CLI.
 
 Here are the libraries and elements used in this example.
 
-### Angular 4.0.0-rc.1
+### Angular 4
 
-As of the end of February 2013, this is the very latest, and it is
+As of the March 2017, this is the very latest, and it is
 also the first release to ship with the new packaging of libraries.
 
 Angular 4 AOT both compiles and executes more quickly and with smaller
