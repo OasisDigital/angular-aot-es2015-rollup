@@ -80,9 +80,9 @@ to benchmark it against Webpack 2.x, unfortunately.
 "Current options" excludes numerous older module bundlers. Only the
 most current ones can bundle ES2015 modules.
 
-### rollup-plugin-node-resolve-angular package
+### rollup-plugin-node-resolve-angular
 
-<https://www.npmjs.com/package/@oasisdigital/rollup-plugin-node-resolve>
+<https://www.npmjs.com/package/rollup-plugin-node-resolve-angular>
 
 While Rollup can understand ES2015 modules, it needs help from a
 plug-in to understand the node_modules directory and file structure.
