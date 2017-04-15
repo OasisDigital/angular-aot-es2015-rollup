@@ -26,4 +26,4 @@ fi
 cp -R node_modules/materialize-css/dist www/materialize
 
 echo "AOT output size"
-ls -l www/bundle.js www/bundle.js.br
+ls -l www/bundle.js www/bundle.js*

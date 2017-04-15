@@ -1,6 +1,8 @@
 # Angular 4 AOT Example with es2015 FESM, Rollup, Buble, Uglify
 
-Kyle Cordes, Oasis Digital
+[Kyle Cordes](http://kylecordes.com)
+
+[Oasis Digital](https://oasisdigital.com)
 
 ## Background
 
