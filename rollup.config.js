@@ -1,6 +1,6 @@
 // See README.md for more explanation
 
-import nodeResolve from '@oasisdigital/rollup-plugin-node-resolve';
+import nodeResolve from 'rollup-plugin-node-resolve-angular';
 import commonjs from 'rollup-plugin-commonjs';
 import buble from 'rollup-plugin-buble';
 import uglify from 'rollup-plugin-uglify';

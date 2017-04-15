@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/switchMap';
 
 import { RedditImageSearch, IRedditItem } from './redditImageSearch';
@@ -27,7 +29,9 @@ export class RedditComponent {
       .do(x => console.log('input changed (debounced), calling API', x));
 
     this.results = debouncedSearchTarget
-      .switchMap(val => ris.search(val.subReddit, val.search))
+      .switchMap(val => ris.search(val.subReddit, val.search)
+        .retry(3))
+      .catch(val => []) // show empty upon failure
       .do(x => console.log('results arrived'));
   }
 }

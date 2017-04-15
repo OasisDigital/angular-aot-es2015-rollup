@@ -3,14 +3,12 @@ set -e
 
 # See README.md for more explanation
 
+# Doing all this with package scripts and so on would be more
+# cross-platform, but harder to talk through when shown on the screen
+# during a presentation.
+
 # Cleanup from any past runs
-rm -rf app/aot
-rm -rf www/bundle.js*
-rm -rf www/materialize
-rm -f www/*.js
-rm -f www/*.map
-rm -f www/*.br
-rm -rf build
+rm -rf app/aot www/bundle.js* www/materialize www/*.js www/*.map www/*.br build
 mkdir -p build
 
 # AOT and TypeScript compile

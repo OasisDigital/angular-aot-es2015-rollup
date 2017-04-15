@@ -1,4 +1,4 @@
-# Angular 4 AOT Example with es2015 ESM, Rollup, Buble, Uglify
+# Angular 4 AOT Example with es2015 FESM, Rollup, Buble, Uglify
 
 Kyle Cordes, Oasis Digital
 
@@ -31,8 +31,8 @@ Here are the libraries and elements used in this example.
 
 ### Angular 4
 
-As of the March 2017, this is the very latest, and it is
-also the first release to ship with the new packaging of libraries.
+As of the April 2017, this is the very latest, and it ships with the
+new FESM packaging of the libraries.
 
 Angular 4 AOT both compiles and executes more quickly and with smaller
 size than Angular 2. This alone should provide ample motivation for
@@ -53,7 +53,7 @@ As ngc wraps the TypeScript compiler and provides TypeScript
 compilation, these settings mean the output will be ES2015 code in
 ES2015 modules - the same as the new Angular es2015 FESM packaging.
 
-### ES2015 FESM packaging
+### ES2015 FESM packaging, sometimes called FESM15
 
 <https://github.com/angular/angular/blob/master/CHANGELOG.md#es2015-builds>
 
@@ -75,25 +75,26 @@ packaging and source code format.
 
 Rollup is widely considered among the best current options for space
 efficient production module bundling. I don't have a comparison handy
-to benchmark it against Webpack 2.0, unfortunately.
+to benchmark it against Webpack 2.x, unfortunately.
 
-"Current options" turns out to exclude numerous older module bundlers.
-Only the most current ones can bundle ES2015 modules.
+"Current options" excludes numerous older module bundlers. Only the
+most current ones can bundle ES2015 modules.
 
-### "@oasisdigital/rollup-plugin-node-resolve" package
+### rollup-plugin-node-resolve-angular package
 
 <https://www.npmjs.com/package/@oasisdigital/rollup-plugin-node-resolve>
 
 While Rollup can understand ES2015 modules, it needs help from a
 plug-in to understand the node_modules directory and file structure.
 
-`rollup-plugin-node-resolve` doesn't support the new angular specific
+`rollup-plugin-node-resolve` doesn't support the new Angular-specific
 way of marking ES2015 FESM code, the fork above at this capability.
 
-I'm planning to publish this later under a more easy to find name.  I
-expect eventually the community will standardize around a way to mark
-such code, and the feature will land in the official node resolve
-plug-in.
+To work around that, I have published and alternate variation of this
+plug-in, `rollup-plugin-node-resolve-angular`. It is very likely that
+the standard Rollup plug-in will include support for whatever standard
+is eventually agreed to, whether that is the current `es2015` package
+field or something different.
 
 ### Buble
 
@@ -109,20 +110,22 @@ Because there is a current hole in the ecosystem, as far as I can
 tell. There isn't a minifier are available which consumes and produces
 ES2015 code.
 
-So to keep the process moving, we need a compiler ES2015->ES5. The choices:
+So to keep the process moving, we need a compiler ES2015->ES5. Choices
+include:
 
 * Babel
   * The standard, the default almost everyone uses.
-  * After its extreme modularization in the latest couple of versions,
-    It ships a very surprisingly large number of node packages and
-    files to produce a working ES2015 compiler.
+  * High quality, very complete.
+  * After its extreme modularization a couple years so,, It ships a
+    large number of small node packages and files to produce a working
+    ES2015 compiler.
   * Not so fast.
   * Most importantly, there is currently a bug, most likely in the
     Rollup Babel plug-in, in which it believes that it is not been
     configured correctly to disregard modules.
 
 * Buble
-  * Small, fast, few feature alternative.
+  * Small, fast, few features.
   * Written by the author of Rollup, so likely to work well together.
   * It has one relevant limitation here around for-of loops, but it
     turns out that the TypeScript compilation emits usages of this
@@ -136,13 +139,13 @@ So to keep the process moving, we need a compiler ES2015->ES5. The choices:
     example published by Rob Wormald.
   * Run pretty fast, installs quickly, arrives in the form of one
     package with no dependencies.
+  * Unpopular for mere ES2015-to-ES5.
 
 * Closure Compiler
   * Great tool, performs both the compilation and (best available,
     usually) minification.
-  * I'll make a branch and use it, alternative to this stack.
 
-I will probably try TypeScript in this ES2015-to-ES5 step next time.
+For the ES2015-to-ES5 step, I will probably try TypeScriptnext time.
 Buble worked great for this time.
 
 ### Uglify
@@ -177,8 +180,8 @@ RxJS operators. The resulting JavaScript "on the wire" is 88K. This
 seems quite satisfactory. Size includes the polyfills in the bundle.
 
 ```
--rw-r--r--+ 1 kcordes  staff  360584 Mar  4 19:44 www/bundle.js
--rw-------+ 1 kcordes  staff   78464 Mar  4 19:44 www/bundle.js.br
+-rw-r--r--+ 1 kcordes  staff  364631 Apr 15 10:49 www/bundle.js
+-rw-------+ 1 kcordes  staff   79711 Apr 15 10:49 www/bundle.js.br
 ```
 
 To understand where the bytes come from:
@@ -189,15 +192,17 @@ npm run explore
 
 ## Limitation and future improvements
 
-These results are good, but there are better results readily
-obtainable once all of the necessary tooling is in place.
-Specifically, for best results it is necessary for the steps all the
-way through the module bundling, tree shaking, and minification to
-understand the data types.
+I expect an ongoing strong trend toward lazy loading in the Angular
+developer community. Unfortunately, Rollup does not currently support
+code splitting and therefore cannot produce a set of bundles for lazy
+loading but only a single bundle for upfront loading. Therefore Rollup
+seems suitable for Angular libraries, and for small Angular
+applications but not for large applications.
 
-As I understand, there are efforts well under way primarily at Google
-to put the necessary type wiring in place so that the Google Closure
-Compiler can be used for this.
+There are efforts well under way primarily at Google to use Google
+Closure Compiler for ES2015-to-ES5, bundling, tree shaking,
+minification, all with one tool. This produces smaller results, and
+should eventually support code splitting for lazy loading.
 
 To follow those efforts:
 

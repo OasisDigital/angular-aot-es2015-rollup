@@ -21,7 +21,7 @@ export class RedditImageSearch {
 }
 
 function translateRedditResults(items: any) {
-  // This function unpacks the messy shape of this API's data.
+  // Unpack the messy shape of this API's data.
 
   const resultList = items.data.children;
   return resultList.map((item: any): IRedditItem => {
